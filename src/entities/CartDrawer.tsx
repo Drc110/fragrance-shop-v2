@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material"
 import { useSelector } from "react-redux"
 import { selectCart } from "../services/slices/cartSlice.ts"
-import CardItem from "./CartItem.tsx"
+import CardInDrawer from "../widgets/CardInDrawer.tsx"
+
 
 function CartDrawer() {
-  const items = useSelector(selectCart)
+  const {items, price} = useSelector(selectCart)
 
   return (
     <>
@@ -16,7 +17,7 @@ function CartDrawer() {
         {items.length ? (
           <>
             {items.map(el => (
-              <CardItem key={el.title} {...el}></CardItem>
+              <CardInDrawer key={el.id + "-" + el.price} {...el} />
             ))}
           </>
         ) : (
@@ -25,10 +26,11 @@ function CartDrawer() {
               Корзина пуста!
             </Typography>
             <Typography variant='h5' align="center">
-              Похоже вы ничего не добавили, ебло
+              Похоже вы ничего не добавили!
             </Typography>
           </Box>
         )}
+        Итого: {price} руб.
       </Box>
     </>
   )

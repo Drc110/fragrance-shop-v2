@@ -1,12 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
-import itemsReducer from './slices/itemsSlice.ts'
 import cartReducer from './slices/cartSlice.ts'
+import { api } from './api/api.ts'
+import optionsReducer from './slices/optionsSlice.ts'
 
 export const store = configureStore({
   reducer: {
-    items: itemsReducer,
-    cart: cartReducer
-  }
+    cart: cartReducer,
+    options: optionsReducer,
+    [api.reducerPath]: api.reducer
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware)
+
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "shared/interfaces/icartItem.ts", "src/services/api/api.ts", "shared/slices", "shared/store.tsx", "src/pages/CardPage.tsx", "src/App.tsx", "src/widgets/Card.tsx", "src/pages/root/vite-env.d.ts", "src/widgets/CardInDrawer.tsx", "src/features/RangeInput.tsx", "src/entities/CartDrawer.tsx", "src/entities/OptionsDrawer.tsx", "src/entities/Header.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

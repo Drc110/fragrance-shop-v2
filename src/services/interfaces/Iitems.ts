@@ -1,4 +1,5 @@
 interface Iitem {
+    id: number,
     brand: string,
     title: string,
     price: number[],

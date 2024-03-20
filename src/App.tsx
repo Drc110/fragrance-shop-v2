@@ -1,10 +1,11 @@
-import { Box, Breadcrumbs, Link } from "@mui/material"
-import Header from "./components/Header.tsx"
-import { Route, Routes } from 'react-router-dom'
-import MainPage from "./pages/MainPage.tsx"
+import { Box } from "@mui/material"
+import Header from "./entities/Header.tsx"
+import { Navigate, Route, Routes } from 'react-router-dom'
+import MainLayout from "./pages/MainLayout.tsx"
 import FavoritePage from "./pages/FavoritePage.tsx"
 import { Provider } from "react-redux"
-import { store } from './services/store.js'
+import { store } from './services/store.tsx'
+import UserPage from "./pages/UserPage.tsx"
 
 function App() {
   return (
@@ -12,18 +13,11 @@ function App() {
       <Provider store={store}>
         <Header/>
           <Box sx={{mx: "50px"}}>
-            <Breadcrumbs sx={{mb: "10px"}}>
-              <Link underline="hover" color="inherit" href="/">
-                Каталог
-              </Link>
-              <Link underline="hover" color="inherit" href="/favorite">
-                Любимые 
-              </Link>
-            </Breadcrumbs>
-            
             <Routes>
-              <Route path="/" Component={MainPage}/>
+              <Route path='/' element={<Navigate to='/main'/>}/>
+              <Route path="/main/*" Component={MainLayout}/>
               <Route path="/favorite" Component={FavoritePage}/>
+              <Route path="/user" Component={UserPage}/>
             </Routes>
           </Box>
       </Provider>

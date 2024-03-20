@@ -1,10 +1,8 @@
 import { Box, Button, Typography } from '@mui/material';
-import Iitem from '../services/Iitems.ts';
-import { useDispatch } from "react-redux"
-import { addtoCart } from "../services/slices/cartSlice.ts"
+import Iitem from '../services/interfaces/Iitems.ts'
+import { Link } from 'react-router-dom';
 
-function MultiActionAreaCard({title, brand, price, imageUrl, volume, gender, description} : Iitem) {
-  const dispatch = useDispatch()
+function CardWidget({id, title, brand, price, imageUrl, volume, gender, description} : Iitem) {
   
   return (
     <Box sx={{width: "80%", padding: 2, bgcolor: "rgba(239, 236, 231, 1)", maxHeight: "20em", mb: 2}}>
@@ -26,12 +24,15 @@ function MultiActionAreaCard({title, brand, price, imageUrl, volume, gender, des
             От: {price[0]}
           </Typography>
         </Box>
-        <Button onClick={() => dispatch(addtoCart({title : title, brand : brand, price : price, imageUrl : imageUrl, volume : volume, gender : gender, description : description}))}>
-          Купить
-        </Button>
+
+        <Link to={`/main/${id}`}>
+          <Button>
+            Купить
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
 }
 
-export default MultiActionAreaCard
+export default CardWidget
